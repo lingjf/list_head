@@ -218,13 +218,13 @@ static inline int list_count(list_head *head) {
     do { (entry)->next = (base)->next; (base)->next = (entry); } while(0)
 
 #define single_linked_list_add_tail(root, entry) \
-    do { typeof(root) *pp = &(root); while (*pp) pp = &(*pp)->next; *pp = entry; } while(0)
+    do { decltype(root) *pp = &(root); while (*pp) pp = &(*pp)->next; *pp = entry; } while(0)
 
 #define _single_linked_list_for_each_safe3(p, t, root) \
-    for (typeof(root) p = root, t; p && (t = p->next, 1); p = t)
+    for (decltype(root) p = root, t; p && (t = p->next, 1); p = t)
 
 #define _single_linked_list_for_each_safe4(p, t, root, i) for (int i = 0; i == 0; ++i) \
-    for (typeof(root) p = root, t; p && (t = p->next, 1); p = t, ++i)
+    for (decltype(root) p = root, t; p && (t = p->next, 1); p = t, ++i)
         
 #define single_linked_list_for_each(p, root, ...) ___PP_VARIADIC_CALL(_single_linked_list_for_each_safe, p, ___ANONYMOUS_VARIABLE(), root, ##__VA_ARGS__)
     
